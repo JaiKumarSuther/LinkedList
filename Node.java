@@ -32,6 +32,7 @@ public class Node {
         int size = 0;
         while (list != null) {
             size++;
+            list = list.next;
         }
         return size;
     }
@@ -252,6 +253,22 @@ public class Node {
         return mylist;
     }
 
+    public void split(Node head) {
+        Node p = head;
+        int size = head.size(head);
+        System.out.println("first half:");
+        int i = 0;
+        while (i < size) {
+            System.out.print(p.data + " ");
+            p = p.next;
+            i++;
+            if (i == size/2) {
+                System.out.println();
+                System.out.println("Second half:");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Node head = new Node(1);
         head = head.insert(2, head);
@@ -261,7 +278,6 @@ public class Node {
         head = head.insert(6, head);
         head = head.insert(7, head);
 
-        head = head.shuffle(head);
-        head.print(head);
+        head.split(head);
     }
 }
