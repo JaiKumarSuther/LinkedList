@@ -268,16 +268,73 @@ public class Node {
             }
         }
     }
+    public Node getLast(Node head) {
+        Node p = head;
+        while(p.next != null) {
+            p = p.next;
+        }
+        return p;
+    }
 
+    public int maxFromBoth(Node head1, Node head2) {
+        int max = Integer.MIN_VALUE;
+        Node p = head1;
+        while(p != null) {
+            if (p.data > max) {
+                max = p.data;
+            }
+            p = p.next;
+        }
+        Node q = head2;
+        while(q != null) {
+            if (q.data > max) {
+                max = q.data;
+            }
+            q = q.next;
+        }
+        return max;
+    }
+
+    
+    public int secondLast(Node head) {
+        Node p = head;
+        while(p.next.next != null) {
+            p = p.next;
+        }
+        return p.data;
+    }
+    
+    public int lowest(Node head) {
+        int min = Integer.MAX_VALUE;
+        Node p = head;
+        while(p != null) {
+            if (p.data < min) {
+                min = p.data;
+            }
+            p = p.next;
+        }
+        return min;
+    }
+    public Node insertUnsorted(int data, Node head) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            newNode.next = head;
+            return newNode;
+        }
+        Node p = head;
+        while(p.next != null) {
+            p = p.next;
+        }
+        p.next = newNode;
+        return head;
+    }
     public static void main(String[] args) {
         Node head = new Node(1);
-        head = head.insert(2, head);
-        head = head.insert(3, head);
-        head = head.insert(4, head);
-        head = head.insert(5, head);
-        head = head.insert(6, head);
-        head = head.insert(7, head);
+        head = head.insertUnsorted(9, head);
+        head = head.insertUnsorted(5, head);
+        head = head.insertUnsorted(1, head);
+        head = head.insertUnsorted(0, head);
 
-        head.split(head);
+        head.print(head);
     }
 }
